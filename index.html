@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+
+        class Fighter {
+            constructor(name, power, health) {
+                this.name = name;
+                this.power = power;
+                this.health = health;
+            }
+
+            get healthFighter() {
+                return this.health;
+            }
+
+            setDamage(damage) {
+                this.health -= damage;
+                console.log("health: " + this.health);
+            }
+
+            hit(enemy, point) {
+                let damage = this.power * point;
+                enemy.setDamage(damage)
+            }
+        }
+
+        class ImprovedFighter extends Fighter {
+            constructor(name, power, health) {
+                super(name, power, health);
+            }
+
+            doubleHit(enemy, point) {
+                super.hit(enemy, point * 2);
+            }
+        }
+
+        function fight(args) {
+            const [fighter,improvedFighter,...points] = args;
+            for (let i = 0; i < points.length; i += 2) {
+                fighter.hit(improvedFighter, points[i]);
+                if (improvedFighter.health <= 0) {
+                    console.log(fighter.name + ' won!');
+                    break;
+                }
+                improvedFighter.doubleHit(fighter, points[i + 1]);
+                if (fighter.health <= 0) {
+                    console.log(improvedFighter.name + ' won!');
+                    break;
+                }
+            }
+        }
+
+        let fighter = new Fighter("A", 1, 100);
+        let improvedFighter = new ImprovedFighter('B', 2, 80);
+        let points = [25, 13, 45, 34, 55, 22, 12];
+        const params = [fighter, improvedFighter, ...points];
+        fight(params);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
