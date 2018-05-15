@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Homework3</title>
 
     <script>
 
@@ -13,9 +13,6 @@
                 this.health = health;
             }
 
-            get healthFighter() {
-                return this.health;
-            }
 
             setDamage(damage) {
                 this.health -= damage;
@@ -54,8 +51,12 @@
             }
         }
 
-        let fighter = new Fighter("A", 1, 100);
-        let improvedFighter = new ImprovedFighter('B', 2, 80);
+        const firstFighterPower = 1;
+        const  firstFighterHealth = 100;
+        const secondFighterPower = 2;
+        const  secondFighterHealth = 80;
+        let fighter = new Fighter("fighterA", firstFighterPower, firstFighterHealth);
+        let improvedFighter = new ImprovedFighter('fighterB', secondFighterPower, secondFighterHealth);
         let points = [25, 13, 45, 34, 55, 22, 12];
         const params = [fighter, improvedFighter, ...points];
         fight(params);
